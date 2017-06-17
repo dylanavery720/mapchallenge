@@ -9,11 +9,13 @@ class App extends Component {
   getLocations() {
     this.props.fetchAllLocations();
   }
+
   render() {
+    const { locations } = this.props
     return (
       <div className="App">
         <FormContainer />
-        <LeafletMap locations={this.props.locations} />
+        {locations.length > 1 && <LeafletMap locations={this.props.locations} />}
       </div>
     );
   }
