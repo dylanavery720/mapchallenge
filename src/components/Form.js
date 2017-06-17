@@ -4,7 +4,11 @@ import React, { Component } from 'react';
 class Form extends Component {
   submitForm(e, data) {
     e.preventDefault();
-    this.props.postNewLocation(data);
+    if ((data.lat > -90 && data.lat < 90) && (data.lng > -180 && data.lng < 180)) {
+      this.props.postNewLocation(data);
+    } else {
+      alert('PLEASE ENTER VALID LAT AND LNG')
+    }
   }
   render() {
     return (
@@ -31,7 +35,7 @@ class Form extends Component {
         </label>
         <button
           type="submit"
-          onClick={(e) => this.submitForm(e, {
+          onClick={e => this.submitForm(e, {
             name: this.name.value,
             lat: Number(this.lat.value),
             lng: Number(this.lng.value),
