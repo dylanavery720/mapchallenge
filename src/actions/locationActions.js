@@ -21,5 +21,20 @@ const fetchAllLocations = () => {
   };
 };
 
+const postNewLocation = (location) => {
+  return (dispatch) => {
+    return fetch('/locations', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify(location),
+    })
+      .then(locations => locations.json())
+      .then(json => dispatch(storeAllLocations(json)))
+  }
+}
 
-export { fetchAllLocations }
+
+export { fetchAllLocations, postNewLocation }
