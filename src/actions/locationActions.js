@@ -8,6 +8,13 @@ const storeAllLocations = (locations) => {
   };
 };
 
+const addPolygon = (lat, lng) => {
+  return {
+    type: 'ADD_POLYGON',
+    positions: [lat, lng],
+  };
+};
+
 const fetchAllLocations = () => {
   return (dispatch) => {
     return fetch('/locations', {
@@ -37,4 +44,4 @@ const postNewLocation = (location) => {
 }
 
 
-export { fetchAllLocations, postNewLocation }
+export { fetchAllLocations, postNewLocation, addPolygon }

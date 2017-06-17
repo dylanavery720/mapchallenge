@@ -8,7 +8,6 @@ class LeafletMap extends Component {
     this.state = {
       centerLat: props.locations[props.locations.length - 1].lat,
       centerLon: props.locations[props.locations.length - 1].lng,
-      positionArray: [],
     };
   }
 
@@ -19,14 +18,9 @@ class LeafletMap extends Component {
       centerLon: nextProps.locations[nextProps.locations.length - 1].lng })
   }
 
-  addToPolygon(lat, lng) {
-    this.setState({ positionArray: [...this.state.positionArray, [lat, lng]] })
-  }
-
   drawPolygon() {
-    console.log(this.state.positionArray)
     return (
-    <Polygon positions={this.state.positionArray} />
+    <Polygon positions={this.props.positionArray} />
     )
   }
 
@@ -50,7 +44,7 @@ class LeafletMap extends Component {
           <ZoomControl
             position="bottomright"
           />
-          <AllMarkers handleClick={this.addToPolygon.bind(this)} />
+          <AllMarkers handleClick={this.props.addPolygon} />
            {this.drawPolygon()}
         </Map>
       </div>
