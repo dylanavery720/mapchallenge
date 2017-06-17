@@ -7,7 +7,7 @@ const Locations = (state = initialState, action) => {
     case 'STORE_LOCATIONS':
       // store an array of locations to state
       return Object.assign({}, state, {
-        data: state.data.concat(action.data),
+        data: action.data,
       });
     default:
       return state;
