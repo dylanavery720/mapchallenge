@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 class Form extends Component {
   submitForm(e, data) {
     e.preventDefault();
-    this.props.saveLocation(data);
+    this.props.postNewLocation(data);
   }
   render() {
     return (
@@ -33,8 +33,8 @@ class Form extends Component {
           type="submit"
           onClick={(e) => this.submitForm(e, {
             name: this.name.value,
-            lat: this.lat.value,
-            lng: this.lng.value
+            lat: Number(this.lat.value),
+            lng: Number(this.lng.value),
           })}
         >
             Save

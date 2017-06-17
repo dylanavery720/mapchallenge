@@ -1,19 +1,14 @@
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
 import Form from '../components/Form'
+import { postNewLocation } from '../actions/locationActions';
 
 const mapStateToProps = (state) => {
   return {};
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    saveLocation: (location) => {
-      dispatch({
-        type: 'SAVE_LOCATION',
-        data: location,
-      });
-    },
-  };
+  return bindActionCreators({ postNewLocation }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form);
