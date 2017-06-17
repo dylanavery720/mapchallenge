@@ -16,6 +16,7 @@ class MapMarker extends Component {
           <Marker
             position={this.props.location}
             icon={icon}
+            onClick={this.props.handleClick}
           >
             <Tooltip
               sticky

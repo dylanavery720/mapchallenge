@@ -8,6 +8,7 @@ class AllMarkers extends Component {
     const markerArray = this.props.locations.map((marker, i) => {
       return (
         <MapMarker
+          handleClick={() => this.props.handleClick(marker.lat, marker.lng)}
           key={i}
           location={[+marker.lat, +marker.lng]}
           name={marker.name}

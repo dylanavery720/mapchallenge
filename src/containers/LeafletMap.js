@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Map, TileLayer, ZoomControl } from 'react-leaflet';
+import { Map, TileLayer, ZoomControl, Polygon } from 'react-leaflet';
 import AllMarkers from './AllMarkers'
 
 class LeafletMap extends Component {
@@ -8,6 +8,7 @@ class LeafletMap extends Component {
     this.state = {
       centerLat: props.locations[props.locations.length - 1].lat,
       centerLon: props.locations[props.locations.length - 1].lng,
+      positionArray: [],
     };
   }
 
@@ -18,6 +19,16 @@ class LeafletMap extends Component {
       centerLon: nextProps.locations[nextProps.locations.length - 1].lng })
   }
 
+  addToPolygon(lat, lng) {
+    this.setState({ positionArray: [...this.state.positionArray, [lat, lng]] })
+  }
+
+  drawPolygon() {
+    console.log(this.state.positionArray)
+    return (
+    <Polygon positions={this.state.positionArray} />
+    )
+  }
 
   render() {
     const { centerLat, centerLon } = this.state
@@ -39,7 +50,8 @@ class LeafletMap extends Component {
           <ZoomControl
             position="bottomright"
           />
-          <AllMarkers />
+          <AllMarkers handleClick={this.addToPolygon.bind(this)} />
+           {this.drawPolygon()}
         </Map>
       </div>
     );
