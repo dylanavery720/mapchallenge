@@ -11,11 +11,12 @@ class App extends Component {
   }
 
   render() {
-    const { locations } = this.props
+    const { locations, positionArray, addPolygon } = this.props
     return (
       <div className="App">
         <FormContainer />
-        {locations.length > 1 && <LeafletMap locations={this.props.locations} />}
+        {locations.length > 1 &&
+        <LeafletMap addPolygon={addPolygon} locations={locations} positionArray={[positionArray]}/>}
       </div>
     );
   }
