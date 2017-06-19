@@ -36,7 +36,7 @@ app.get('/locations', (request, response) => response.send({ locations: app.loca
 
 app.post('/locations', (request, response) => {
   app.locals.idIndex++
-  app.locals.locations.push(Object.assign( {
+  app.locals.locations.push(Object.assign({
     id: String('id' + app.locals.idIndex),
   }, request.body))
   response.send({ locations: app.locals.locations })
